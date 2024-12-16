@@ -13,6 +13,11 @@ class PageController extends Controller
         // dd($request->get('for-my'));
         // dd($request->user());
         // dd($request->user()->id);
+        // dd($request->user()->friends()->wherePivot('accepted', true)->get());
+        dd(
+            $request->user()->friendsFrom()->get(),
+            $request->user()->friendsTo()->get()
+        );
 
         if ($request->get('for-my')) {
             $posts = $request->user()->posts()->latest()->get();
