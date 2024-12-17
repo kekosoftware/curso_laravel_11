@@ -8,9 +8,7 @@
                 class="w-full mb-2 p-0 text-white bg-transparent border-0 border-b-2 border-slate-800 focus:border-b-slate-700 focus:ring-0 resize-none overflow-hidden"
                 placeholder="Your comment.. ">
             </textarea>
-            <input 
-                type="submit" 
-                class="px-4 py-2 bg-yellow-400 text-gray-800 font-semibold sm:rounded-lg text-xs">
+            <x-submit-button>Submit</x-submit-button>
         </form>
         @foreach ($posts as $post )
             <a href="{{ route('profile.show', $post->user )}}" class="px-6 mb-2 flex itmes-center gap-2 font-medium text-slate-100">
