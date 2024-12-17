@@ -14,13 +14,11 @@ class PageController extends Controller
         if ($request->get('for-my')) {
             $user = $request->user();
 
-            $friends_from_ids = $user->friendsFrom()->pluck('users.id');
-            $friends_to_ids   = $user->friendsTo()->pluck('users.id');
-            $user_ids         = $friends_from_ids->merge($friends_to_ids)->push($user->id);
+            $user_ids = $user->friends()->pluck('id')->push($user->id);
 
-            $posts = Post::whereIn('user_id', $user_ids)->latest()->get(); 
+            $posts = Post::whereIn('user_id', $user_ids)->latest()->with('user')->get(); 
         } else {
-            $posts = Post::latest()->get();
+            $posts = Post::latest()->with('user')->get();
         }
         // compact('posts') es lo mismo que escribir ['posts' = $posts];
         return view('dashboard', compact('posts'));
