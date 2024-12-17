@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('from_id'); // Define las columnas explícitamente
             $table->unsignedBigInteger('to_id');   // Define las columnas explícitamente
             $table->boolean('accepted')->default(false);
-            $table->timestamps();
 
             // Define las claves foráneas después de las columnas
             $table->foreign('from_id')->references('id')->on('users')->onDelete('cascade');
